@@ -1,0 +1,23 @@
+application_name: PolymerBaseLite
+lambda:
+  functionmain:
+    function_name: PolymerMain-%s-function
+    basedir: app/main/deploy
+    envfile_basedir: .polymer/main_config
+  functionhandler:
+    function_name: PolymerHandler-%s-function
+    basedir: app/handler/deploy
+    envfile_basedir: .polymer/handler_config
+api_lambda_integration:
+  functionmain:
+    integration: true
+dynamodb:
+  users:
+    table_name: users-PolymerLite
+    key_attributes:
+      Id: S
+      userId: "N"
+    hash_key: userId
+    range_key: Id
+    read_capacity: 1
+    write_capacity: 1
